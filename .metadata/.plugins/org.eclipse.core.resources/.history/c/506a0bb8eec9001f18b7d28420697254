@@ -1,0 +1,59 @@
+package main;
+import model.*;
+import presentation.*;
+import java.time.LocalDate;
+
+public class MainOrganizzazioneConsulenza {
+
+	public static void main(String[] args) {
+		
+		Progetto progetto = new Progetto();
+		MenuOrganizzazioneConsulenza menu = MenuOrganizzazioneConsulenza(progetto);
+		menu.runMenu();
+		
+		
+		
+		
+		
+		
+		
+		/*
+		Progetto prog = new Progetto();
+		
+		Dirigente d1 = new Dirigente("Mario", "Rossi", 2004);
+		
+		Funzionario f1 = new Funzionario("Dario", "Muciccino", 2010);
+		Funzionario f2 = new Funzionario("Giuseppe", "Ummario", 2020);
+		
+		Tecnico t1 = new Tecnico("Lorenzo", "Turri", 2020, Organizzazione.INTERNO, Competenza.INFORMATICA);
+		Tecnico t2 = new Tecnico("Simone", "Verdegro", 2010, Organizzazione.ESTERNO, Competenza.INFORMATICA);
+		Tecnico t3 = new Tecnico("Krathos", "Ciao", 2017, Organizzazione.INTERNO, Competenza.ELETTRONICA);
+		
+		
+		prog.addDirigente(d1);
+		prog.addFunzionario(f1);
+		prog.addFunzionario(f2);
+		prog.addTecnico(t1);
+		prog.addTecnico(t2);
+		prog.addTecnico(t3);
+		
+		
+		//System.out.println(d1.getCodice()); //per debug
+		//System.out.println(t1.getCodice());
+		
+		System.out.println("Oggi è l'anno: " + LocalDate.now().getYear());
+		
+		System.out.println("\n\n\n" + prog.toString());
+		
+		System.out.println("\n\n\nCosto totale del progetto all'ora: " + prog.getCostoTotProgetto());
+		
+		*/
+		
+	}
+
+	private static MenuOrganizzazioneConsulenza MenuOrganizzazioneConsulenza(Progetto progetto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
