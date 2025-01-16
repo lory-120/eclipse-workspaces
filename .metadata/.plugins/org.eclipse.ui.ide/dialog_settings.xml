@@ -6,6 +6,9 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="false"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="false"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/lorenzo/Scrivania/eclipse-workspaces/problema_filosofico_semafori_TURRI"/>
+			<item value="/home/lorenzo/Scrivania/eclipse-workspaces/TestFileDATStudente"/>
+			<item value="/home/lorenzo/Scrivania/eclipse-workspaces/StudentiArrayDAT_TURRI"/>
 			<item value="C:\Users\loren\Desktop\eclipse-workspaces\OrganizzazioneConsulenza_TURRI"/>
 			<item value="C:\Users\loren\Desktop\eclipse-workspaces\VERIFICA1"/>
 			<item value="C:\Users\loren\Desktop\eclipse-workspaces\Museo"/>
@@ -19,9 +22,9 @@
 		<section name="SmartImportWizard.dialogBounds">
 			<item key="DIALOG_X_ORIGIN" value="502"/>
 			<item key="DIALOG_Y_ORIGIN" value="35"/>
-			<item key="DIALOG_WIDTH" value="935"/>
-			<item key="DIALOG_HEIGHT" value="726"/>
-			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+			<item key="DIALOG_WIDTH" value="924"/>
+			<item key="DIALOG_HEIGHT" value="718"/>
+			<item key="DIALOG_FONT_NAME" value="1|Ubuntu|10.0|0|GTK|1|"/>
 		</section>
 	</section>
 </section>
