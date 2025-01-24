@@ -1,5 +1,7 @@
 package defaultPackage;
 
+import presentation.Tastiera;
+
 public class Main {
 	public static void main(String args[]) {
 		//NON SERVE ISTANZIARE L'OGGETTO PERCHE' E' STATICO

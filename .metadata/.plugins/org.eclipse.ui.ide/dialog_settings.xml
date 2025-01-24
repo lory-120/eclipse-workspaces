@@ -6,6 +6,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\lorenzo.turri.stud_t\Desktop\eclipse-workspaces"/>
 			<item value="C:\Users\loren\Desktop\eclipse-workspaces"/>
 			<item value="/home/lorenzo/Scrivania/eclipse-workspaces/problema_filosofico_semafori_TURRI"/>
 			<item value="/home/lorenzo/Scrivania/eclipse-workspaces/TestFileDATStudente"/>
