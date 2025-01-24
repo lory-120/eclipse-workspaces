@@ -1,7 +1,0 @@
-package main;
-import model.*;
-import presentation.*;
-
-public class MainFrazione {
-	
-}
