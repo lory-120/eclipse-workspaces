@@ -1,6 +1,8 @@
 package model;
 
 abstract public class Scuola {
+	
+	//attributi
 	protected String codice;
 	protected String nome;
 	protected String citta;
@@ -68,7 +70,6 @@ abstract public class Scuola {
 	public static int getPasswordSize() {
 		return PASSWORD_SIZE;
 	}
-		
 	
 	//metodi della funzione
 	public static String getNewCodice(int passwordSize) {
@@ -87,7 +88,6 @@ abstract public class Scuola {
 	//metodi abstract
 	abstract public double getContributoTotale();
 	
-	
 	//metodo toString
 	@Override
 	public String toString() {
@@ -95,5 +95,4 @@ abstract public class Scuola {
 				+ ", nClassi=" + nClassi + ", nSediAggiuntive=" + nSediAggiuntive + ", nLab=" + nLab + "]";
 	}
 	
-
 }

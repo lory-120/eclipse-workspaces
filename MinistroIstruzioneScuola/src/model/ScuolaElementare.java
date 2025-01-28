@@ -3,8 +3,8 @@ package model;
 public class ScuolaElementare extends Scuola {
 
 	//attributi
-	private double contributoStudente;
-	private double contributoSede;
+	private double contributoStudente = 125.0;
+	private double contributoSede = 9000.0;
 	
 	//metodo costruttore con super()
 	public ScuolaElementare(String nome, String citta, int nStudenti, int nClassi, int nSediAggiuntive, int nLab, int contributoStudente, int contributoSede) {
@@ -12,6 +12,7 @@ public class ScuolaElementare extends Scuola {
 		this.contributoStudente = contributoStudente;
 		this.contributoSede = contributoSede;
 	}
+	
 
 	//metodi get/set
 	public double getContributoStudente() {
@@ -23,15 +24,12 @@ public class ScuolaElementare extends Scuola {
 	public double getContributoSede() {
 		return contributoSede;
 	}
-	
-	public void setContributoSede(double contibutoSede) {
-		this.contributoSede = contibutoSede;
+	public void setContributoSede(double contributoSede) {
+		this.contributoSede = contributoSede;
 	}
 	
-	
-	//metodi della funzione
 	public double getContributoTotale() {
-		return (nStudenti*contributoStudente)+(nSediAggiuntive*contributoSede);
+		return (nStudenti*contributoStudente) + (nSediAggiuntive*contributoSede);
 	}
 	
 
