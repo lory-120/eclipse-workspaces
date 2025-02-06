@@ -5,35 +5,41 @@ import model.GestioneScuole;
 import model.Scuola;
 import utilities.ScuolaNonPresenteException;
 
-public class MenuMinistroIstruzione {
+public class MenuGestioneScuole {
 	
 	private GestioneScuole gestione;
 	
-	public MenuMinistroIstruzione() {
+	public MenuGestioneScuole() {
+		
 	}
 	
-	public MenuMinistroIstruzione(GestioneScuole gestione) {
+	public MenuGestioneScuole(GestioneScuole gestione) {
 		this.gestione=gestione;
 	}
 	
-	private void printMenu() {
-		System.out.println("\nScegli l'opzione:");
-		System.out.println("1. - Filtra scuole per tipo;");
-		System.out.println("2. - Filtra scuole per città;");
-		System.out.println("3. - Filtra scuole con contributi sopra una soglia;");
-		System.out.println("4. - Filtra scuole con più di un certo numero di studenti;");
-		System.out.println("5. - Visualizza le scuole con più di 500 studenti e almeno 5 laboratori;");
-		System.out.println("6. - Visualizza i dati di una scuola dato il suo nome;");
-		System.out.println("7. - Visualizza tutte le scuole;");
-		System.out.println("0. - Esci dal programma.");
+	private void stampaMenu() {
+		System.out.println("\nMenù gestione scuole:");
+		System.out.println("\n1 --> Filtra scuole per tipo");
+		System.out.println("\n2 --> Filtra scuole per città");
+		System.out.println("\n3 --> Filtra scuole con contributi sopra una soglia");
+		System.out.println("\n4 --> Filtra scuole con più di un certo numero di studenti");
+		System.out.println("\n5 --> Visualizzare le scuole con più di 500 studenti e almeno 5 laboratori");
+		System.out.println("\n6 --> Visualizzare i dati di una scuola data la sua denominazione");
+		System.out.println("\n7 --> Visualizzare tutte le scuole");
+		System.out.println("\n8 --> Esci dal programma");
 	}
 	
-	public void runMenu() {
-		boolean exitFlag=false;
-		while (!exitFlag) {
-			printMenu();
-			int scelta=Tastiera.leggiInt("Scelta: ");
-			switch (scelta) {			
+	public void eseguiMenu() {
+		boolean esci=false;
+		
+		while (!esci) {
+			
+			stampaMenu();
+			
+			int scelta=Tastiera.leggiInt("Cosa vuoi fare? ");
+			
+			switch (scelta) {
+			
 				case 1 -> scelta1();
 				case 2 -> scelta2();
 				case 3 -> scelta3();
@@ -41,12 +47,17 @@ public class MenuMinistroIstruzione {
 				case 5 -> scelta5();
 				case 6 -> scelta6();
 				case 7 -> scelta7();
-				case 0 -> {					
-					System.out.println("Alla prossima!");
-					exitFlag=true;					
+				case 8 -> {
+					
+					System.out.println("Arrivederci");
+					esci=true;
+					
 				}
-				default -> System.out.println("Scelta non valida. Riprova.");			
-			}			
+				
+				default -> System.out.println("Carattere inserito non valido");
+			
+			}
+			
 		}
 	}
 
@@ -54,9 +65,9 @@ public class MenuMinistroIstruzione {
 		String tipo="";
 		
 		do {
-			tipo=Tastiera.leggiString("Inserisci il tipo di scuola (Elementare/Media/Liceo/Professionale/Tecnico): ");
+			tipo=Tastiera.leggiStringa("Inserisci il tipo di scuola (Elementare/Media/Liceo/Professionale/Tecnico)");
 			if(!tipo.equalsIgnoreCase("elementare") && !tipo.equalsIgnoreCase("media") && !tipo.equalsIgnoreCase("liceo") && !tipo.equalsIgnoreCase("professionale") && !tipo.equalsIgnoreCase("Tecnico"))
-				System.out.println("Tipo inserito non valido. Riprova.");
+				System.out.println("Stringa inserita non valida");
 		} while(!tipo.equalsIgnoreCase("elementare") && !tipo.equalsIgnoreCase("media") && !tipo.equalsIgnoreCase("liceo") && !tipo.equalsIgnoreCase("professionale") && !tipo.equalsIgnoreCase("Tecnico"));
 		
 		try {
@@ -70,7 +81,7 @@ public class MenuMinistroIstruzione {
 				case "tecnico" -> scuole = gestione.getTecnici();
 			}
 			
-			System.out.println("Ecco tutte le scuole del tipo " + tipo.toLowerCase() + ":");
+			System.out.println("Ecco tutte le scuole del tipo " + tipo.toLowerCase());
 			
 			for(int i=0;i<scuole.size();i++) {
 				System.out.println("\n" + scuole.get(i));
@@ -84,15 +95,15 @@ public class MenuMinistroIstruzione {
 		String citta="";
 		
 		do {
-			citta=Tastiera.leggiString("Inserisci la città: ");
+			citta=Tastiera.leggiStringa("Inserisci la citta: ");
 			if(citta.equals(""))
-				System.out.println("Città inserita non valida. Riprova.");
+				System.out.println("Stringa inserita non valida");
 		} while(citta.equals(""));
 		
 		try {
 			ArrayList<Scuola> scuole = gestione.getScuolePerCitta(citta);
 			
-			System.out.println("Scuole presenti nella città " + citta + ":");
+			System.out.println("Scuole presenti nella città " + citta);
 			
 			for(int i=0;i<scuole.size();i++) {
 				System.out.println("\n" + scuole.get(i).toString());
@@ -107,14 +118,14 @@ public class MenuMinistroIstruzione {
 		
 		do {
 			soglia=Tastiera.leggiDouble("Inserisci la soglia: ");
-			if(soglia < 0)
-				System.out.println("Valore inserito non valido. Riprova.");
-		} while(soglia < 0);
+			if(soglia<0)
+				System.out.println("Valore inserito non valido");
+		} while(soglia<0);
 		
 		try {
 			ArrayList<Scuola> scuole = gestione.getScuoleSopraSoglia(soglia);
 			
-			System.out.println("Scuole con contributi sopra i " + soglia + "€:");
+			System.out.println("Scuole con contributi sopra i " + soglia + "€");
 			
 			for(int i=0;i<scuole.size();i++) {
 				System.out.println("\n" + scuole.get(i).toString());
@@ -128,15 +139,15 @@ public class MenuMinistroIstruzione {
 		int studenti=0;
 		
 		do {
-			studenti = Tastiera.leggiInt("Inserisci il numero di studenti: ");
-			if(studenti < 0)
-				System.out.println("Valore inserito non valido. Riprova.");
-		} while(studenti < 0);
+			studenti=Tastiera.leggiInt("Inserisci il numero di studenti: ");
+			if(studenti<0)
+				System.out.println("Valore inserito non valido");
+		} while(studenti<0);
 		
 		try {
 			ArrayList<Scuola> scuole = gestione.getScuoleSopraStudenti(studenti);
 			
-			System.out.println("Scuole con più di " + studenti + " studenti:");
+			System.out.println("Scuole con più di " + studenti + " studenti");
 			
 			for(int i=0;i<scuole.size();i++) {
 				System.out.println("\n" + scuole.get(i).toString());
@@ -149,9 +160,9 @@ public class MenuMinistroIstruzione {
 	private void scelta5() {
 		
 		try {
-			ArrayList<Scuola> scuole = gestione.getScuoleSopraStudenti_Laboratori(500, 5);
+			ArrayList<Scuola> scuole = gestione.getScuoleSopraStudenti_Laboratori(500,5);
 			
-			System.out.println("Scuole con più di 500 studenti e 5 laboratori: ");
+			System.out.println("Scuole con più di 500 studenti e 5 laboratori");
 			
 			for(int i=0;i<scuole.size();i++) {
 				System.out.println("\n" + scuole.get(i).toString());
@@ -165,9 +176,9 @@ public class MenuMinistroIstruzione {
 		String denominazione="";
 		
 		do {
-			denominazione=Tastiera.leggiString("Inserisci il nome della scuola: ");
+			denominazione=Tastiera.leggiStringa("Inserisci la denominazione: ");
 			if(denominazione.equals(""))
-				System.out.println("Nome inserito non valido. Riprova.");
+				System.out.println("Stringa inserita non valida");
 		} while(denominazione.equals(""));
 		
 		try {
