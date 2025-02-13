@@ -1,8 +1,9 @@
 package presentation;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
-import model.GestioneScuole;
-import model.Scuola;
+import model.*;
 import utilities.ScuolaNonPresenteException;
 
 public class MenuMinistroIstruzione {
@@ -13,7 +14,7 @@ public class MenuMinistroIstruzione {
 	}
 	
 	public MenuMinistroIstruzione(GestioneScuole gestione) {
-		this.gestione=gestione;
+		this.gestione = gestione;
 	}
 	
 	private void printMenu() {
@@ -25,15 +26,19 @@ public class MenuMinistroIstruzione {
 		System.out.println("5. - Visualizza le scuole con più di 500 studenti e almeno 5 laboratori;");
 		System.out.println("6. - Visualizza i dati di una scuola dato il suo nome;");
 		System.out.println("7. - Visualizza tutte le scuole;");
+		System.out.println("8. - Aggiungi una scuola;");
+		System.out.println("9. - Rimuovi una scuola dato il nome;");
+		System.out.println("10. - Salva le scuole in un file CSV;");
+		System.out.println("11. - Carica le scuole da un file CSV;");
 		System.out.println("0. - Esci dal programma.");
 	}
 	
 	public void runMenu() {
-		boolean exitFlag=false;
+		boolean exitFlag = false;
 		while (!exitFlag) {
 			printMenu();
-			int scelta=Tastiera.leggiInt("Scelta: ");
-			switch (scelta) {			
+			int choice=Tastiera.leggiInt("Scelta: ");
+			switch (choice) {			
 				case 1 -> scelta1();
 				case 2 -> scelta2();
 				case 3 -> scelta3();
@@ -41,6 +46,10 @@ public class MenuMinistroIstruzione {
 				case 5 -> scelta5();
 				case 6 -> scelta6();
 				case 7 -> scelta7();
+				case 8 -> scelta8();
+				case 9 -> scelta9();
+				case 10 -> scelta10();
+				case 11 -> scelta11();
 				case 0 -> {					
 					System.out.println("Alla prossima!");
 					exitFlag=true;					
@@ -182,6 +191,98 @@ public class MenuMinistroIstruzione {
 	
 	private void scelta7() {
 		System.out.println(gestione.toString());
+	}
+	
+	
+	private void scelta8() { //aggiungi scuola		
+		String nome = ""; //si prende in input il nome della scuola
+		do {
+			nome = Tastiera.leggiString("Inserisci il nome della scuola da aggiungere: ");
+			System.out.println((nome.equals("")) ? "Il nome non può essere vuoto." : "Il nome della scuola è " + nome);
+		} while(nome.equals(""));
+		
+		String city = ""; //si prende in input la città della scuola
+		do {
+			city = Tastiera.leggiString("Inserisci la città della scuola: ");
+			System.out.println((city.equals("")) ? "La città non può essere vuota." : "La città della scuola è " + city);
+		} while(city.equals(""));
+		
+		int nStudenti = 0; //si prende in input il numero degli studenti
+		do {
+			nStudenti = Tastiera.leggiInt("Inserisci il numero degli studenti nella scuola '" + nome + "':");
+			System.out.println((nStudenti < 0) ? "Il numero non può essere negativo." : "Il n° di studenti è " + nStudenti);
+		} while(nStudenti < 0);
+		
+		int nClassi = 0; //si prende in input il numero delle classi
+		do {
+			nClassi = Tastiera.leggiInt("Inserisci il numero delle classi nella scuola '" + nome + "':");
+			System.out.println((nClassi < 0) ? "Il numero non può essere negativo." : "Il n° di classi è " + nClassi);
+		} while(nClassi < 0);
+		
+		int nSediAggiuntive = 0; //si prende in input il numero di sedi aggiuntive
+		do {
+			nSediAggiuntive = Tastiera.leggiInt("Inserisci il numero delle sedi aggiuntive nella scuola '" + nome + "':");
+			System.out.println((nSediAggiuntive < 0) ? "Il numero non può essere negativo." : "Il n° di sedi aggiuntive è " + nSediAggiuntive);
+		} while(nSediAggiuntive < 0);
+		
+		int nLab = 0; //si prende in input il numero di laboratori
+		do {
+			nLab = Tastiera.leggiInt("Inserisci il numero di laboratori nella scuola '" + nome + "':");
+			System.out.println((nLab < 0) ? "Il numero non può essere negativo." : "Il n° di laboratori è " + nLab);
+		} while(nLab < 0);
+		
+		//si prende in input il tipo di scuola (Elementare, Media, Liceo, Professionale, Tecnico)
+		String choice = "";
+		boolean isValid = true;
+		do {
+			isValid = true;
+			choice = Tastiera.leggiString("Inserisci il tipo di scuola che aggiungi (Elementare, Media, Liceo, Professionale, Tecnico): ");
+			switch(choice.toLowerCase()) {
+				case "elementare" -> gestione.aggiungiScuola(new ScuolaElementare(nome, city, nStudenti, nClassi, nSediAggiuntive, nLab));
+				case "media" -> gestione.aggiungiScuola(new ScuolaMedia(nome, city, nStudenti, nClassi, nSediAggiuntive, nLab));
+				case "liceo" -> gestione.aggiungiScuola(new Liceo(nome, city, nStudenti, nClassi, nSediAggiuntive, nLab));
+				case "professionale" -> gestione.aggiungiScuola(new Professionale(nome, city, nStudenti, nClassi, nSediAggiuntive, nLab));
+				case "tecnico" -> gestione.aggiungiScuola(new Tecnico(nome, city, nStudenti, nClassi, nSediAggiuntive, nLab));
+				default -> isValid = false;
+			}
+			System.out.println((isValid) ? "Scuola aggiunta." : "Tipo non valido. Riprova.");
+		} while(!isValid);
+		
+	}
+	
+	private void scelta9() { //rimuovi scuola
+		String src = Tastiera.leggiString("Inserisci il nome della scuola da eliminare: ");
+		System.out.println((gestione.rimuoviScuola(src)) ? "Scuola eliminata." : "Scuola '" + src + "' non trovata.");
+	}
+	
+	
+	private void scelta10() { //salva su un file csv
+		String fileName = Tastiera.leggiString("Inserisci il nome del file sul quale caricare i dati delle scuole: ");
+		
+		try {
+			gestione.salvaScuole(fileName);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			return;
+		}
+		
+		System.out.println("Scuole salvate.");
+	}
+	
+	private void scelta11() { //carica da file csv
+		String fileName = Tastiera.leggiString("Inserisci il nome del file dal quale caricare le scuole: ");
+		
+		try {
+			gestione.caricaScuole(fileName);
+		} catch (FileNotFoundException e) {
+			System.out.println("Non è stato trovato il file '" + fileName + "':\n" + e.getMessage());
+			return;
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			return;
+		}
+		
+		System.out.println("Scuole caricate. Adesso le puoi visualizzare.");
 	}
 	
 }

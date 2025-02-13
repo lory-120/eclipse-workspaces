@@ -13,6 +13,16 @@ public class ScuolaElementare extends Scuola {
 		this.contributoSede = contributoSede;
 	}
 	
+	public ScuolaElementare(String nome, String citta, int nStudenti, int nClassi, int nSediAggiuntive, int nLab) {
+		super(nome, citta, nStudenti, nClassi, nSediAggiuntive, nLab);
+	}
+	
+	public ScuolaElementare(String params[]) {
+		super(params[1], params[2], Integer.parseInt(params[3]), Integer.parseInt(params[4]), Integer.parseInt(params[5]), Integer.parseInt(params[6]));
+		this.contributoStudente = Double.parseDouble(params[7]);
+		this.contributoSede = Double.parseDouble(params[8]);
+	}
+	
 
 	//metodi get/set
 	public double getContributoStudente() {
@@ -32,6 +42,20 @@ public class ScuolaElementare extends Scuola {
 		return (nStudenti*contributoStudente) + (nSediAggiuntive*contributoSede);
 	}
 	
+	
+	protected String getCSVString() {
+		char regex = ';';
+		String csv = this.getClass().getSimpleName() + regex;
+		csv += nome + regex;
+		csv += citta + regex;
+		csv += Integer.toString(nStudenti) + regex;
+		csv += Integer.toString(nClassi) + regex;
+		csv += Integer.toString(nSediAggiuntive) + regex;
+		csv += Integer.toString(nLab) + regex;
+		csv += Double.toString(contributoStudente) + regex;
+		csv += Double.toString(contributoSede) + regex;
+		return csv;
+	}
 
 	//metodo toString
 	@Override

@@ -88,6 +88,8 @@ abstract public class Scuola {
 	//metodi abstract
 	abstract public double getContributoTotale();
 	
+	abstract protected String getCSVString();
+	
 	//metodo toString
 	@Override
 	public String toString() {

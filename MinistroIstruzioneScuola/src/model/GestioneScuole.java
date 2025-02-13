@@ -1,5 +1,11 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import utilities.ScuolaNonPresenteException;
@@ -23,6 +29,16 @@ public class GestioneScuole {
 	//metodi della funzione
 	public boolean aggiungiScuola(Scuola s) {
 		return scuole.add(s);
+	}
+	
+	public boolean rimuoviScuola(String src) {
+		for(int i=0; i<scuole.size(); i++) {
+			if(scuole.get(i).getNome().equals(src)) {
+				scuole.remove(i);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public ArrayList<Scuola> getElementari() throws ScuolaNonPresenteException {
@@ -148,6 +164,38 @@ public class GestioneScuole {
 				return scuole.get(i);
 		}
 		throw new ScuolaNonPresenteException("Non è presente nessuna scuola con denominazione " + denominazione);
+	}
+	
+	public void salvaScuole(String fileName) throws FileNotFoundException, IOException {
+		BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+		
+		for(Scuola s:scuole) {
+			writer.write(s.getCSVString() + "\n");
+		}
+		
+		writer.close();
+	}
+	
+	public void caricaScuole(String fileName) throws FileNotFoundException, IOException {
+		BufferedReader reader = new BufferedReader(new FileReader(fileName));
+		
+		String temp;
+		while((temp = reader.readLine()) != null) {
+			String params[] = temp.split(";");
+			
+			switch(params[0]) {
+				case "ScuolaElementare" -> scuole.add(new ScuolaElementare(params));
+				case "ScuolaMedia" -> scuole.add(new ScuolaMedia(params));
+				case "Liceo" -> scuole.add(new Liceo(params));
+				case "Professionale" -> scuole.add(new Professionale(params));
+				case "Tecnico" -> scuole.add(new Tecnico(params));
+				default -> {
+					throw new ScuolaNonPresenteException();
+				}
+			}
+		}
+		
+		reader.close();		
 	}
 	
 	
