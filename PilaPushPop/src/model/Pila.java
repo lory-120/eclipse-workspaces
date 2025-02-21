@@ -8,8 +8,8 @@ public class Pila {
 	private Vector<Object>pila;
 	private int index;
 	
-	public Pila(int dim) {
-		pila = new Vector<>(10, 5);
+	public Pila(int dimIniziale) {
+		pila = new Vector<>(dimIniziale, 5);
 		this.index = 0;
 	}
 	
