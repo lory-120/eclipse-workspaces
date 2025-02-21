@@ -18,11 +18,11 @@ public class GestioneScuole {
 	
 	//metodo costruttore	
 	public GestioneScuole() {
-		scuole=new ArrayList<Scuola>();
+		scuole = new ArrayList<Scuola>();
 	}
 	
 	public GestioneScuole(ArrayList<Scuola> scuole) {
-		this.scuole=scuole;
+		this.scuole = scuole;
 	}
 	
 	
@@ -165,6 +165,18 @@ public class GestioneScuole {
 		}
 		throw new ScuolaNonPresenteException("Non è presente nessuna scuola con denominazione " + denominazione);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public void salvaScuole(String fileName) throws FileNotFoundException, IOException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));

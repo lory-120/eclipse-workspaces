@@ -1,6 +1,6 @@
 package model;
 
-abstract public class Scuola {
+abstract public class Scuola implements Comparable<Scuola> {
 	
 	//attributi
 	protected String codice;
