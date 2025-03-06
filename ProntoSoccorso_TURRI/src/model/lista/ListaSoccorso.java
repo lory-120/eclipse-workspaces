@@ -1,8 +1,9 @@
-package model;
+package model.lista;
 
 //import model.lista.Nodo;
+import model.Paziente.*;
 
-public class Lista<T extends Comparable<T>> {
+public abstract class ListaSoccorso<T extends Comparable<T>> {
 
 	//attributi
 	private Nodo<T> head; //la testa della lista
@@ -10,17 +11,32 @@ public class Lista<T extends Comparable<T>> {
 	
 	
 	//metodi costruttore
-	public Lista() {
+	public ListaSoccorso() {
 		this.head = new Nodo<T>();
 		this.tail = null;
 		this.head.setNext(tail);
 	}
 	
 	
-	//metodi della funzione
+	//metodi get/set
+	public Nodo<T> getHead() {
+		return head;
+	}
+	public void setHead(Nodo<T> head) {
+		this.head = head;
+	}
+	public Nodo<T> getTail() {
+		return tail;
+	}
+	public void setTail(Nodo<T> tail) {
+		this.tail = tail;
+	}
+
 	
+	//metodi della funzione	
+
 	//inserisce il dato in un nodo nella testa della lista
-	public boolean inserisciInTesta(T data) {
+	public boolean addInTesta(T data) {
 		//creo il nuovo nodo da aggiungere
 		Nodo<T> newNode = new Nodo<>(data);
 		
@@ -34,8 +50,16 @@ public class Lista<T extends Comparable<T>> {
 		return true;
 	}
 	
+	//rimuove il dato nella testa della lista
+	public boolean removeInTesta() {
+		if(isEmpty()) return true;
+		
+		head.setNext(head.getNext().getNext());
+		return true;
+	}
 	
-	public boolean inserisciOrdinato(T data) {
+	
+	public boolean addOrdinato(T data) {
 		//creo il nuovo nodo da aggiungere
 		Nodo<T> newNode = new Nodo<>(data);
 		
@@ -68,7 +92,7 @@ public class Lista<T extends Comparable<T>> {
 	
 	
 	//inserisci il dato in coda alla lista
-	public boolean inserisciInCoda(T data) {
+	public boolean addInCoda(T data) {
 		Nodo<T> newNodo = new Nodo<>(data, null);
 		
 		if(head.getNext() == null) { //se la lista è vuota
@@ -85,6 +109,27 @@ public class Lista<T extends Comparable<T>> {
 		tail.setNext(newNodo);
 		tail = newNodo;
 		return true;
+	}
+	
+	//rimuove il dato dalla coda della lista
+	public boolean removeInCoda() {
+		if(isEmpty()) return true; //se la lista è vuota
+		
+		Nodo<T> tmp = head; //nodo temporaneo che parte dalla testa
+		
+		if(tmp.getNext().getNext() == null) { //se c'è solo un elemento (HEAD -> TAIL)
+			tail.setData(null);
+			return true;
+		}
+		
+		while(tmp.getNext().getNext() != null) { //scorri tra i nodi e trova il nodo prima della coda
+			tmp = tmp.getNext();
+		}
+		tmp.setNext(null);
+		tail = tmp;
+		
+		return true;
+		
 	}
 	
 	
@@ -129,5 +174,15 @@ public class Lista<T extends Comparable<T>> {
 		
 		return s;
 	}
+	
+	
+	
+	
+	
+	//***METODI TEMPORANEI CHE NON FANNO PARTE DELLA CLASSE LISTA***
+	abstract public void inserisciPaziente(Paziente p);
+	abstract public Paziente soccorriPaziente();
+	abstract public int[] getPazientiInAttesa();
+	abstract public boolean removePazienteSpecifico(String nome, String cognome);
 	
 }

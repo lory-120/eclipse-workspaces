@@ -1,4 +1,4 @@
-package model;
+package model.lista;
 
 public class Nodo<T extends Comparable<T>> {
 

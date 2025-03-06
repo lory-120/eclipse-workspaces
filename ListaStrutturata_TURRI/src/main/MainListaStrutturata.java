@@ -6,7 +6,7 @@ public class MainListaStrutturata {
 
 	public static void main(String args[]) {
 		
-		Lista list = new Lista();
+		OldLista list = new OldLista();
 		
 		list.inserisciOrdinato(2);
 		list.inserisciOrdinato(5);

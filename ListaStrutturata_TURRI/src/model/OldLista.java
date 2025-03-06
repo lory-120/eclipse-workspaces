@@ -1,37 +1,22 @@
 package model;
 
-public class Lista {
+public class OldLista {
 
 	//attributi
-	private Nodo head; //la testa della lista
+	private OldNodo head; //la testa della lista
 	//private Nodo tail; //la coda della lista
-	private int nElementi
 	
 	
 	//metodi costruttore
-	public Lista() {
-		this.head = null;
-		this.nElementi = 0;
+	public OldLista() {
+		this.head = new OldNodo();
 	}
 	
 	
 	//metodi della funzione
-	public boolean inserisciInTesta(Paziente p) {
-		Nodo newNode = new Nodo(p);
-		newNode.setNext(this.head);
-		this.head = newNode;
-		nElementi++;
-		
-		return true;
-		
-	}
-	
-	
-	
-	
-	public void inserisciOrdinato(Paziente p) {
+	public void inserisciOrdinato(int n) {
 		//creo il nuovo nodo da aggiungere
-		Nodo newNode = new Nodo(p, null);
+		OldNodo newNode = new OldNodo(n, null);
 		
 		//se la lista è vuota o si deve mettere n prima del primo nodo
 		if(head.getNext() == null || n < head.getNext().getData()) {
@@ -40,7 +25,7 @@ public class Lista {
 			return;
 		}
 		
-		Nodo current = head.getNext();	
+		OldNodo current = head.getNext();	
 		//per continuare il ciclo, il dato tra i due nodi (prevoius e next) deve essere compreso 
 		while(current.getNext() != null && current.getNext().getData() < n) {
 			current = current.getNext(); //scorri in avanti di 1 nodo
@@ -64,7 +49,7 @@ public class Lista {
 			return "Lista vuota. (HEAD -> TAIL)";
 		}
 		
-		Nodo tmp = head.getNext();
+		OldNodo tmp = head.getNext();
 		s += "HEAD -> ";
 		
 		while(tmp != null) {
