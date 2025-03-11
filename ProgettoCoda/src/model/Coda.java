@@ -1,41 +1,33 @@
 package model;
 
-import java.util.Vector;
+import ListaStrutturata.*;
 
-public class Coda {
+public class Coda<T extends Comparable<T>> {
 
-	//attributo della coda
-	private Vector<Object> coda;
+	//attributi
+	private Lista<T> l;
 	
 	//metodo costruttore
-	public Coda(int dimIniziale) {
-		coda = new Vector<>(dimIniziale, 5);
+	public Coda() {
+		this.l = new Lista<>();
 	}
-	
 	
 	//metodi della funzione
-	
-	//aggiungi un elemento alla fine della coda
-	public void aggiungi(Object o) {
-		coda.add(o);
+	//metodi aggiungi, togli, size, isVuota
+	public void aggiungi(T data) {
+		l.inserisciInTesta(data);
 	}
 	
-	//rimuovi un elemento dalla fine della coda (l'elemento 0 del Vector) e restituiscilo come Object
-	public Object togli() throws ArrayIndexOutOfBoundsException {
-		Object tmp = coda.firstElement();
-		coda.remove(0);
-		return tmp;
+	public T togli() {
+		return l.getFromTail();
 	}
 	
-	//quanti elementi ci sono nella coda
 	public int size() {
-		return coda.size();
+		return (int)l.size();
 	}
 	
-	//restituisce se è vuota o no
 	public boolean isVuota() {
-		return coda.isEmpty();
+		return l.isEmpty();
 	}
-	
 	
 }

@@ -6,9 +6,9 @@ public class MainCoda {
 
 	public static void main(String args[]) {
 		
-		final int nElementi = 1000000; //definisco quanti elementi mettere nella coda
+		final int nElementi = 1000; //definisco quanti elementi mettere nella coda
 		
-		Coda c = new Coda(nElementi); //creo una coda di nElementi
+		Coda<Integer> c = new Coda<Integer>(); //creo una coda di nElementi
 		
 		for(int i=0; i<nElementi; i++) { //aggiungo gli elementi alla coda
 			c.aggiungi(i);
