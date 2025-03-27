@@ -1,6 +1,6 @@
 package model;
 
-public class Nodo<T extends Comparable<T>> {
+abstract public class Nodo<T> implements Comparable<T> {
 
 	//attributi
 	private T data; //il dato che il nodo contiene
@@ -40,5 +40,8 @@ public class Nodo<T extends Comparable<T>> {
 	public String toString() {
 		return data.toString();
 	}
+	
+	@Override
+	abstract public int compareTo(T o);
 	
 }

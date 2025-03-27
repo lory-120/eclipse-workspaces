@@ -53,11 +53,11 @@ public class ArrayStudenteTXT {
 		try {
 			FileReader f = new FileReader(fileName);
 			BufferedReader fileInput = new BufferedReader(f);
-			StringTokenizer tokenizer = new StringTokenizer(strTemp, ";"); //tokenizzatore per stirnghe, con riferimento la var. strTemp e delimitatore ";"
-			Studente temp = new Studente(); //oggetto Studente di appoggio
 			
 			try {
-				while(strTemp != null) { //si scorre per tutte le stringhe e si estrae l'oggetto
+				while((strTemp = fileInput.readLine()) != null) { //si scorre per tutte le stringhe e si estrae l'oggetto
+					Studente temp = new Studente(); //oggetto Studente di appoggio
+					StringTokenizer tokenizer = new StringTokenizer(strTemp, ";"); //tokenizzatore per stirnghe, con riferimento la var. strTemp e delimitatore ";"
 					temp.setNome(tokenizer.nextToken());
 					temp.setCognome(tokenizer.nextToken());
 					temp.setEta(Integer.parseInt(tokenizer.nextToken())); //qui c'è da fare il parseInt perché si leggono tutte stringhe
@@ -65,10 +65,10 @@ public class ArrayStudenteTXT {
 					this.studenti.add(temp); //alla fine si aggiunge all'arraylist
 				}
 			} catch(NoSuchElementException e) { //se la stringa estratta tokenizzata non ha nulla (se la stringa è vuota)
-				f.close(); //importante chiudere il file
+				fileInput.close(); //importante chiudere il file
 			}
 			
-			f.close(); //importante chiudere il file
+			fileInput.close(); //importante chiudere il file
 		} catch(IOException e) { //errore di i/o
 			System.out.println("Errore di I/O o apertura file.\n" + e.toString());
 		} catch(Exception e) { //eccezione generale

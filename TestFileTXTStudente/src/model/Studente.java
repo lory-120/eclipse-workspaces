@@ -1,6 +1,7 @@
 package model;
 import java.io.*;
 
+@SuppressWarnings("serial")
 public class Studente implements Serializable {
 	//attributi
 	private String nome;

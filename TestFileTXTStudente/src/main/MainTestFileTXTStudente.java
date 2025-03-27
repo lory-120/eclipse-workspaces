@@ -6,11 +6,11 @@ public class MainTestFileTXTStudente {
 	public static void main(String args[]) {
 		
 		ArrayStudenteTXT array = new ArrayStudenteTXT();
-		Studente s1 = new Studente("lorenzo", "turri", 17, "TRRLNZ");
-		Studente s2 = new Studente("antonino", "stagnitta", 69, "STGANT");
+		//Studente s1 = new Studente("lorenzo", "turri", 17, "TRRLNZ");
+		//Studente s2 = new Studente("antonino", "stagnitta", 69, "STGANT");
 		
-		array.add(s1);
-		array.add(s2);
+		//array.add(s1);
+		//array.add(s2);
 		
 		//array.writeFileTXT("elenco_studenti.txt");
 		
