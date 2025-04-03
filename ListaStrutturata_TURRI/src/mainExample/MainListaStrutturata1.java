@@ -1,20 +1,23 @@
-package main;
+package mainExample;
 
 import model.*;
 
-public class MainListaStrutturata {
+public class MainListaStrutturata1 {
 
 	public static void main(String args[]) {
 		
-		Lista<Integer> list = new Lista<>();
+		Lista<Integer> list = new Lista<Integer>();
 		
-		list.inserisciOrdinato(2);
-		list.inserisciOrdinato(5);
-		list.inserisciOrdinato(8);
-		list.inserisciOrdinato(1);
-		list.inserisciOrdinato(3);
+		System.out.println(list.toString());
+		list.inserisciOrdinatoDecrescente(5);
+		System.out.println(list.toString());
+		list.inserisciOrdinatoDecrescente(8);
+		System.out.println(list.toString());
+		list.inserisciOrdinatoDecrescente(1);
+		System.out.println(list.toString());
+		list.inserisciOrdinatoDecrescente(3);
 		
-		System.out.println(list.toStringLista());
+		System.out.println(list.toString());
 		
 		
 		System.out.println("dimensione lista: " + Long.toString(list.size()));
