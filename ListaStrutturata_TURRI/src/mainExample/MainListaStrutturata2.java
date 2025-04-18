@@ -53,15 +53,6 @@ class Persona implements Comparable<Persona> {
     
 }
 
-/**
- * caramelli se davvero leggi questo dio porco hai 2 opzioni:
- * 1. mi mandi una foto dove twerki
- * 2. mi mandi una foto di panci che twerka
- * 3. finisci outlast da bendato e con un plug anale
- * 4. mi mandi un messaggio dove mi dici che hai letto questo
- * @return maremma cignala
- */
-
 public class MainListaStrutturata2 {
 
 	public static void main(String[] args) {
